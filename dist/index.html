@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="学生会新生手册：快速了解组织、工作方式与校园生活。" />
+    <title>学生会新生手册</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="cover-mode">
+    <a class="skip-link" href="#article">跳到正文</a>
+    <section class="cover" id="cover" aria-label="北京邮电大学学生会新生手册封面">
+      <div class="cover-action">
+        <span>准备好认识学生会了吗？</span>
+        <a class="cover-enter" href="#/guide/welcome">
+          <span>进入新生指南</span>
+          <span class="cover-enter-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+    <header class="topbar">
+      <a class="brand" href="#/guide/welcome" aria-label="学生会新生手册首页">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>学生会新生手册</span>
+        <span class="badge">2026</span>
+      </a>
+      <button class="search-trigger" id="search-trigger" type="button">
+        <span aria-hidden="true">⌕</span><span>搜索手册</span><kbd>Ctrl K</kbd>
+      </button>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="切换主题">◐</button>
+      <button class="icon-button menu-button" id="menu-toggle" type="button" aria-label="打开目录">☰</button>
+    </header>
+
+    <div class="shell">
+      <aside class="sidebar" id="sidebar" aria-label="手册目录">
+        <nav id="sidebar-nav"></nav>
+        <p class="sidebar-note">保持好奇，也保持靠谱。</p>
+      </aside>
+
+      <main class="content">
+        <article id="article" tabindex="-1"></article>
+        <nav class="pager" id="pager" aria-label="文章翻页"></nav>
+        <footer>学生会新生手册 · 内容可按实际情况修改</footer>
+      </main>
+
+      <aside class="outline" aria-label="本页目录">
+        <p>本页内容</p>
+        <nav id="outline-nav"></nav>
+      </aside>
+    </div>
+
+    <div class="scrim" id="scrim"></div>
+    <dialog class="search-dialog" id="search-dialog">
+      <form method="dialog" class="search-head">
+        <label for="search-input">搜索手册</label>
+        <button type="submit" aria-label="关闭搜索">Esc</button>
+      </form>
+      <input id="search-input" type="search" placeholder="输入关键词，例如“例会”" autocomplete="off" />
+      <div class="search-results" id="search-results"></div>
+    </dialog>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

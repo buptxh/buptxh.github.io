@@ -80,6 +80,23 @@ const pages = window.HANDBOOK_PAGES || samplePages;
 const groups = [...new Set(pages.map(page => page.group))];
 const $ = selector => document.querySelector(selector);
 const escapeHtml = value => value.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]));
+const expandedGroups = new Set();
+const groupIconPaths = [
+  '<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M9.5 20v-6h5v6"/>',
+  '<path d="m2 10 10-5 10 5-10 5Z"/><path d="M6 12.5V17c3 2 9 2 12 0v-4.5"/><path d="M22 10v6"/>',
+  '<path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H12v18H7.5A3.5 3.5 0 0 0 4 23Z"/><path d="M20 5.5A3.5 3.5 0 0 0 16.5 2H12v18h4.5A3.5 3.5 0 0 1 20 23Z"/>',
+  '<path d="M3 10h18"/><path d="m5 10 7-6 7 6"/><path d="M5 10v9M9.5 10v9M14.5 10v9M19 10v9M3 19h18M2 22h20"/>',
+  '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20v-2.5A4.5 4.5 0 0 1 8 13h2a4.5 4.5 0 0 1 4.5 4.5V20"/><path d="M14.5 14a4 4 0 0 1 6 3.5V20"/>',
+  '<path d="M20.8 4.7a5.5 5.5 0 0 0-7.8 0L12 5.8l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.5a5.5 5.5 0 0 0 0-7.8Z"/>',
+  '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',
+  '<path d="m12 3 1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/>',
+  '<path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="8"/>'
+];
+
+function groupIcon(index) {
+  const paths = groupIconPaths[index] || groupIconPaths[groupIconPaths.length - 1];
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
+}
 
 function currentPage() {
   const slug = location.hash.replace(/^#/, '').split('#')[0] || '/guide/welcome';
@@ -87,11 +104,24 @@ function currentPage() {
 }
 
 function renderSidebar(active) {
-  $('#sidebar-nav').innerHTML = groups.map(group => `
-    <section class="nav-group">
-      <h2>${group}</h2>
-      ${pages.filter(page => page.group === group).map(page => `<a href="#${page.slug}" class="${page.slug === active.slug ? 'active' : ''}">${page.title}</a>`).join('')}
-    </section>`).join('');
+  expandedGroups.add(active.group);
+  $('#sidebar-nav').innerHTML = groups.map((group, index) => {
+    const expanded = expandedGroups.has(group);
+    const activeGroup = group === active.group;
+    return `
+    <section class="nav-group${expanded ? '' : ' collapsed'}${activeGroup ? ' active-group' : ''}">
+      <button class="nav-group-toggle" type="button" data-group-index="${index}" aria-expanded="${expanded}" aria-controls="nav-group-${index}">
+        <span class="nav-group-icon">${groupIcon(index)}</span>
+        <span class="nav-group-label">${escapeHtml(group)}</span>
+        <svg class="nav-group-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"/></svg>
+      </button>
+      <div class="nav-group-pages" id="nav-group-${index}" aria-hidden="${!expanded}"${expanded ? '' : ' inert'}>
+        <div class="nav-group-pages-inner">
+          ${pages.filter(page => page.group === group).map(page => `<a href="#${page.slug}" class="${page.slug === active.slug ? 'active' : ''}">${escapeHtml(page.title)}</a>`).join('')}
+        </div>
+      </div>
+    </section>`;
+  }).join('');
 }
 
 function renderPage() {
@@ -139,6 +169,19 @@ function renderSearch(query) {
 $('#search-trigger').addEventListener('click', openSearch);
 $('#search-input').addEventListener('input', event => renderSearch(event.target.value));
 $('#search-results').addEventListener('click', () => $('#search-dialog').close());
+$('#sidebar-nav').addEventListener('click', event => {
+  const toggle = event.target.closest('.nav-group-toggle');
+  if (!toggle) return;
+  const group = groups[Number(toggle.dataset.groupIndex)];
+  const navGroup = toggle.closest('.nav-group');
+  const collapsed = navGroup.classList.toggle('collapsed');
+  const navPages = navGroup.querySelector('.nav-group-pages');
+  toggle.setAttribute('aria-expanded', String(!collapsed));
+  navPages.setAttribute('aria-hidden', String(collapsed));
+  navPages.inert = collapsed;
+  if (collapsed) expandedGroups.delete(group);
+  else expandedGroups.add(group);
+});
 $('#theme-toggle').addEventListener('click', () => {
   const light = document.documentElement.dataset.theme === 'light';
   document.documentElement.dataset.theme = light ? 'dark' : 'light';

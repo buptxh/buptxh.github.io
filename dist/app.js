@@ -129,7 +129,7 @@ function openSearch() {
 
 function renderSearch(query) {
   const term = query.trim().toLowerCase();
-  const results = pages.filter(page => !term || `${page.title} ${page.lead} ${page.sections.map(s => s[1]).join(' ')}`.toLowerCase().includes(term));
+  const results = pages.filter(page => !term || `${page.title} ${page.search || page.lead || ''} ${page.sections.map(s => s[1]).join(' ')}`.toLowerCase().includes(term));
   $('#search-results').innerHTML = results.length ? results.map(page => `<a class="search-result" href="#${page.slug}"><strong>${escapeHtml(page.title)}</strong><span>${escapeHtml(page.group)}</span></a>`).join('') : '<div class="empty">没有找到相关内容</div>';
 }
 

@@ -1,28 +1,49 @@
 # 学生会新生手册
 
-一个无需构建工具的静态文档站，视觉与信息架构参考了 DeepSeek Harness 文档：顶部导航、分组侧栏、页内目录、全文搜索与明暗主题。
+这是一个由 Markdown 驱动的静态文档网站。每篇 Markdown 对应一个网页；侧边栏、页内目录、全文搜索和前后翻页会在构建时自动生成。
 
-## 本地预览
+## 修改内容
+
+所有正文都在 `content/` 目录中，并按一级分组放在不同文件夹里。图片位于 `dist/assets/handbook/`。
+
+- 修改网页：直接编辑对应的 `.md` 文件。
+- 新增网页：复制一个现有 `.md` 文件，修改文件头和正文。
+- 删除网页：删除对应的 `.md` 文件。
+- 调整顺序：修改文件头中的 `order` 数字，数字越小越靠前。
+- 调整侧边栏分组：修改 `group`；同名 `group` 会归入同一个一级标题。
+
+每个 Markdown 文件以以下信息开头：
+
+```markdown
+---
+title: "页面标题"
+group: "01 一级标题"
+slug: "/handbook/example"
+order: 10
+---
+
+## 第一个小节 {#first-section}
+
+这里编写正文，支持段落、链接、粗体、列表、表格和图片。
+
+![图片说明](./assets/handbook/example.png)
+```
+
+注意：每个文件的 `slug` 必须唯一，并且以 `/` 开头。二级标题会自动出现在右侧的本页目录中；`{#first-section}` 是可选的固定锚点。
+
+## 本地构建与预览
 
 在项目目录运行：
 
 ```powershell
+python scripts/build_handbook.py
 python -m http.server 4173 --directory dist
 ```
 
 然后访问 `http://localhost:4173`。
 
-## 修改内容
-
-- Word 手册整理后的页面内容与目录：`dist/handbook-data.js`
-- 页面交互和备用示例内容：`dist/app.js`
-- 颜色、字号和布局：`dist/styles.css`
-- 站点标题与描述：`dist/index.html`
-
-每个页面由 `group`、`slug`、`title`、`lead` 和 `sections` 组成。Word 文档中的正文图片位于 `dist/assets/handbook`。
+构建脚本会扫描 `content/` 中的所有 Markdown，并生成 `dist/handbook-data.js`。因此不要直接修改该生成文件。
 
 ## 发布到 GitHub Pages
 
-仓库已经包含 `.github/workflows/pages.yml`。上传至 GitHub 后，在仓库的 **Settings → Pages** 中将 Source 设为 **GitHub Actions**；推送到 `main` 分支时会自动发布 `dist` 目录。
-
-发布前请把“待补充”的联系方式、地点和入口替换为本校真实信息。
+推送到 `main` 分支后，GitHub Actions 会自动从 Markdown 重新构建，并发布 `dist/` 目录。无需手动提交构建后的数据也可以完成更新。

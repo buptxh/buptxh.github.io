@@ -120,7 +120,7 @@ kbd { margin-left: auto; padding: .05rem .38rem; border: 1px solid var(--line); 
 .icon-button:hover { background: var(--panel-soft); border-color: var(--line); }
 .menu-button { display: none; }
 
-.shell { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 268px minmax(0, 760px) 220px; justify-content: center; padding-top: 64px; }
+.shell { width: 100%; margin: 0; display: grid; grid-template-columns: 268px minmax(0, 760px) minmax(0, 1fr); padding-top: 64px; }
 .sidebar { position: sticky; top: 64px; height: calc(100vh - 64px); overflow: auto; padding: 1.35rem 1rem 1.7rem; border-right: 1px solid var(--line); }
 .sidebar-emblem { margin: 0 .3rem 1rem; overflow: hidden; background: #0b438d; border: 1px solid color-mix(in srgb, #0b438d 72%, var(--line)); border-radius: 8px; }
 .sidebar-emblem img { display: block; width: 100%; height: auto; }
@@ -210,11 +210,11 @@ code { padding: .15rem .4rem; color: color-mix(in srgb, var(--accent) 78%, var(-
 
 @media (max-width: 1060px) {
   .topbar { grid-template-columns: minmax(220px, 1fr) minmax(180px, 360px) minmax(220px, 1fr); gap: .75rem; padding: 0 1rem; }
-  .shell { grid-template-columns: 240px minmax(0, 760px); }
+  .shell { grid-template-columns: 240px minmax(0, 1fr); }
   .outline { display: none; }
 }
 @media (max-width: 760px) {
-  .cover { background-size: contain; background-position: center top; }
+  .cover { background-image: url("./cover-mobile.png"); background-size: cover; background-position: center top; }
   .cover-action { right: auto; bottom: 5vh; left: 50%; width: calc(100% - 2rem); transform: translateX(-50%); }
   .cover-enter:hover { transform: translateY(-3px); }
   .topbar { grid-template-columns: 1fr auto auto; padding: 0 1rem; }

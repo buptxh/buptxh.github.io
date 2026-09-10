@@ -103,12 +103,15 @@ function renderPage() {
     return;
   }
   const page = currentPage();
+  const visibleOutlineSections = page.sections.filter(([id, title]) => !(id === 'overview' && title.trim() === '概览'));
   document.title = `${page.title} | 学生会新生手册`;
   $('#article').innerHTML = `
     <h1>${page.title}</h1>
-    ${page.sections.map(([id, title, html]) => `<section><h2 id="${id}">${title}</h2>${html}</section>`).join('')}`;
+    ${page.sections.map(([id, title, html]) => id === 'overview' && title.trim() === '概览'
+      ? `<section id="${id}">${html}</section>`
+      : `<section><h2 id="${id}">${title}</h2>${html}</section>`).join('')}`;
   renderSidebar(page);
-  $('#outline-nav').innerHTML = page.sections.map(([id, title]) => `<a href="#${page.slug}#${id}">${title}</a>`).join('');
+  $('#outline-nav').innerHTML = visibleOutlineSections.map(([id, title]) => `<a href="#${page.slug}#${id}">${title}</a>`).join('');
   const index = pages.indexOf(page);
   $('#pager').innerHTML = `
     ${index > 0 ? `<a href="#${pages[index - 1].slug}"><small>上一篇</small><span>← ${pages[index - 1].title}</span></a>` : '<span></span>'}

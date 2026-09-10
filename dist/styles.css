@@ -215,7 +215,7 @@ code { padding: .15rem .4rem; color: color-mix(in srgb, var(--accent) 78%, var(-
 }
 @media (max-width: 760px) {
   .cover { background-image: url("./cover-mobile.png"); background-size: cover; background-position: center top; }
-  .cover-action { right: auto; bottom: 9vh; left: 50%; width: calc(100% - 2rem); transform: translateX(-50%); }
+  .cover-action { right: auto; bottom: 15vh; left: 50%; width: calc(100% - 2rem); transform: translateX(-50%); }
   .cover-enter:hover { transform: translateY(-3px); }
   .topbar { grid-template-columns: 1fr auto auto; padding: 0 1rem; }
   .badge, .search-trigger span:nth-child(2), .search-trigger kbd { display: none; }

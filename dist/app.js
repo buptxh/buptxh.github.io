@@ -128,13 +128,13 @@ function renderPage() {
   const coverMode = !location.hash || location.hash === '#/' || location.hash === '#/cover';
   document.body.classList.toggle('cover-mode', coverMode);
   if (coverMode) {
-    document.title = '学生会新生手册';
+    document.title = '北京邮电大学2026新生手册';
     setSidebar(false);
     return;
   }
   const page = currentPage();
   const visibleOutlineSections = page.sections.filter(([id, title]) => !(id === 'overview' && title.trim() === '概览'));
-  document.title = `${page.title} | 学生会新生手册`;
+  document.title = `${page.title} | 北京邮电大学2026新生手册`;
   $('#article').dataset.pageSlug = page.slug;
   $('#article').innerHTML = `
     <h1>${page.title}</h1>

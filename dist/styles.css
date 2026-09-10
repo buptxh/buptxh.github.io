@@ -125,7 +125,6 @@ kbd { margin-left: auto; padding: .05rem .38rem; border: 1px solid var(--line); 
 article { min-height: 62vh; }
 article h1 { margin: 0 0 .8rem; font-size: clamp(2rem, 4vw, 2.65rem); line-height: 1.22; letter-spacing: -.035em; }
 .lead { max-width: 42rem; margin: 0 0 2.5rem; color: var(--muted); font-size: 1.08rem; line-height: 1.8; }
-.eyebrow { display: inline-flex; align-items: center; gap: .4rem; margin-bottom: .8rem; color: var(--accent); font-size: .76rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
 article section { padding: 1.8rem 0 1.65rem; border-top: 1px solid var(--line); }
 article h2 { margin: 0 0 .75rem; font-size: 1.45rem; line-height: 1.35; letter-spacing: -.02em; }
 article h3 { margin: 1.4rem 0 .5rem; font-size: 1.05rem; }

@@ -105,7 +105,6 @@ function renderPage() {
   const page = currentPage();
   document.title = `${page.title} | 学生会新生手册`;
   $('#article').innerHTML = `
-    <span class="eyebrow">${page.eyebrow}</span>
     <h1>${page.title}</h1>
     <p class="lead">${page.lead}</p>
     ${page.sections.map(([id, title, html]) => `<section><h2 id="${id}">${title}</h2>${html}</section>`).join('')}`;

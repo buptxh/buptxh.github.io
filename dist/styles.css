@@ -130,6 +130,7 @@ article section { padding: 1.8rem 0 1.65rem; border-top: 1px solid var(--line); 
 article h2 { margin: 0 0 .75rem; font-size: 1.45rem; line-height: 1.35; letter-spacing: -.02em; }
 article h3 { margin: 1.4rem 0 .5rem; font-size: 1.05rem; }
 article p { margin: .65rem 0; color: color-mix(in srgb, var(--text) 90%, var(--muted)); }
+article p a { color: var(--accent); text-underline-offset: .16em; }
 article ul, article ol { padding-left: 1.25rem; }
 article li { margin: .38rem 0; padding-left: .2rem; }
 strong { font-weight: 700; }
@@ -143,6 +144,17 @@ code { padding: .15rem .4rem; color: color-mix(in srgb, var(--accent) 78%, var(-
 .card { padding: 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: 11px; }
 .card h3 { margin: 0 0 .2rem; }
 .card p { margin: 0; color: var(--muted); font-size: .9rem; }
+.image-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 1.1rem 0; }
+.image-gallery-single { grid-template-columns: minmax(0, 1fr); }
+.image-gallery figure { display: flex; align-items: center; justify-content: center; min-width: 0; margin: 0; padding: .45rem; overflow: hidden; background: var(--panel); border: 1px solid var(--line); border-radius: 11px; }
+.image-gallery img { display: block; width: auto; max-width: 100%; max-height: 620px; border-radius: 7px; object-fit: contain; }
+.table-wrap { max-width: 100%; margin: 1.2rem 0; overflow-x: auto; border: 1px solid var(--line); border-radius: 11px; }
+.info-table { width: 100%; border-collapse: collapse; font-size: .9rem; line-height: 1.55; }
+.info-table th, .info-table td { padding: .72rem .8rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+.info-table th { color: var(--text); background: var(--panel-soft); font-weight: 750; white-space: nowrap; }
+.info-table tr:last-child td { border-bottom: 0; }
+.info-table th:last-child, .info-table td:last-child { border-right: 0; }
+.info-table a { color: var(--accent); }
 
 .outline { position: sticky; top: 64px; height: calc(100vh - 64px); padding: 3.25rem 1.25rem; }
 .outline > p { margin: 0 0 .55rem; font-size: .8rem; font-weight: 750; }
@@ -189,6 +201,7 @@ footer { padding: 2.2rem 0 1rem; color: var(--faint); font-size: .78rem; text-al
   .scrim.open { display: block; }
   .content { padding: 2.25rem 1.25rem 1rem; }
   .cards { grid-template-columns: 1fr; }
+  .image-gallery { grid-template-columns: 1fr; }
   .pager { grid-template-columns: 1fr; }
   .pager a:last-child { text-align: left; }
 }

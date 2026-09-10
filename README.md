@@ -14,11 +14,12 @@ python -m http.server 4173 --directory dist
 
 ## 修改内容
 
-- 页面内容与目录：`dist/app.js` 中的 `pages`
+- Word 手册整理后的页面内容与目录：`dist/handbook-data.js`
+- 页面交互和备用示例内容：`dist/app.js`
 - 颜色、字号和布局：`dist/styles.css`
 - 站点标题与描述：`dist/index.html`
 
-每个页面由 `group`、`slug`、`title`、`lead` 和 `sections` 组成。复制一个页面对象即可增加新页面。
+每个页面由 `group`、`slug`、`title`、`lead` 和 `sections` 组成。Word 文档中的正文图片位于 `dist/assets/handbook`。
 
 ## 发布到 GitHub Pages
 

@@ -1,4 +1,4 @@
-const pages = [
+const samplePages = [
   {
     group: "新生指南", slug: "/guide/welcome", title: "欢迎加入学生会", eyebrow: "从这里开始",
     lead: "这不是一本需要背诵的规章，而是一张帮助你快速找到人、找到事、找到节奏的校园地图。",
@@ -74,6 +74,8 @@ const pages = [
     ]
   }
 ];
+
+const pages = window.HANDBOOK_PAGES || samplePages;
 
 const groups = [...new Set(pages.map(page => page.group))];
 const $ = selector => document.querySelector(selector);

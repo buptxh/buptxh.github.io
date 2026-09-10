@@ -120,6 +120,8 @@ kbd { margin-left: auto; padding: .05rem .38rem; border: 1px solid var(--line); 
 
 .shell { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 268px minmax(0, 760px) 220px; justify-content: center; padding-top: 64px; }
 .sidebar { position: sticky; top: 64px; height: calc(100vh - 64px); overflow: auto; padding: 1.35rem 1rem 1.7rem; border-right: 1px solid var(--line); }
+.sidebar-emblem { margin: 0 .3rem 1rem; overflow: hidden; background: #0b438d; border: 1px solid color-mix(in srgb, #0b438d 72%, var(--line)); border-radius: 8px; }
+.sidebar-emblem img { display: block; width: 100%; height: auto; }
 .nav-group { margin: 0 0 .35rem; }
 .nav-group-toggle {
   width: 100%; min-height: 42px; display: grid; grid-template-columns: 24px minmax(0, 1fr) 18px; align-items: center; gap: .62rem;

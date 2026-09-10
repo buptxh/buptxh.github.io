@@ -129,7 +129,7 @@ window.HANDBOOK_PAGES = [
       [
         "overview",
         "概览",
-        "<div class=\"image-gallery\"><figure><img src=\"./assets/handbook/image17.png\" alt=\"常用服务咨询渠道\" loading=\"lazy\"></figure><figure><img src=\"./assets/handbook/image18.png\" alt=\"常用服务咨询渠道\" loading=\"lazy\"></figure></div><p>各部门联系方式可在企业号“办公电话”应用中查询。</p><p>权益君QQ号：3299639808</p><p>后勤接诉即办：拨打热线 010-62281234 或通过企业号反馈。</p>"
+        "<div class=\"image-gallery image-gallery-single\"><figure><img src=\"./assets/handbook/image17.png\" alt=\"常用服务咨询渠道\" loading=\"lazy\"></figure></div><div class=\"image-gallery image-gallery-single\"><figure><img src=\"./assets/handbook/image18.png\" alt=\"常用服务咨询渠道\" loading=\"lazy\"></figure></div><p>各部门联系方式可在企业号“办公电话”应用中查询。</p><p>权益君QQ号：3299639808</p><p>后勤接诉即办：拨打热线 010-62281234 或通过企业号反馈。</p>"
       ]
     ]
   },

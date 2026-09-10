@@ -135,6 +135,7 @@ function renderPage() {
   const page = currentPage();
   const visibleOutlineSections = page.sections.filter(([id, title]) => !(id === 'overview' && title.trim() === '概览'));
   document.title = `${page.title} | 学生会新生手册`;
+  $('#article').dataset.pageSlug = page.slug;
   $('#article').innerHTML = `
     <h1>${page.title}</h1>
     ${page.sections.map(([id, title, html]) => id === 'overview' && title.trim() === '概览'

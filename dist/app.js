@@ -106,7 +106,6 @@ function renderPage() {
   document.title = `${page.title} | 学生会新生手册`;
   $('#article').innerHTML = `
     <h1>${page.title}</h1>
-    <p class="lead">${page.lead}</p>
     ${page.sections.map(([id, title, html]) => `<section><h2 id="${id}">${title}</h2>${html}</section>`).join('')}`;
   renderSidebar(page);
   $('#outline-nav').innerHTML = page.sections.map(([id, title]) => `<a href="#${page.slug}#${id}">${title}</a>`).join('');
@@ -131,7 +130,7 @@ function openSearch() {
 function renderSearch(query) {
   const term = query.trim().toLowerCase();
   const results = pages.filter(page => !term || `${page.title} ${page.lead} ${page.sections.map(s => s[1]).join(' ')}`.toLowerCase().includes(term));
-  $('#search-results').innerHTML = results.length ? results.map(page => `<a class="search-result" href="#${page.slug}"><strong>${escapeHtml(page.title)}</strong><span>${escapeHtml(page.group)} · ${escapeHtml(page.lead)}</span></a>`).join('') : '<div class="empty">没有找到相关内容</div>';
+  $('#search-results').innerHTML = results.length ? results.map(page => `<a class="search-result" href="#${page.slug}"><strong>${escapeHtml(page.title)}</strong><span>${escapeHtml(page.group)}</span></a>`).join('') : '<div class="empty">没有找到相关内容</div>';
 }
 
 $('#search-trigger').addEventListener('click', openSearch);
